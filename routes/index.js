@@ -106,7 +106,7 @@ router.post('/forgot', function(req, res) {
             let smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: 'santis.aggelos@gmail.com',
+                    user: 'yelpcamp.resetpw@gmail.com',
                     pass: process.env.GMAILPW
                 }
             });
@@ -195,13 +195,13 @@ router.post('/reset/:token', function(req, res) {
             let smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: 'santis.aggelos@gmail.com',
+                    user: 'yelpcamp.resetpw@gmail.com',
                     pass: process.env.GMAILPW
                 }
             });
             let mailOptions = {
                 to: user.email,
-                from: 'santis.aggelos@gmail.com',
+                from: 'YelpCamp',
                 subject: 'Your password has been reset.',
                 text: 'Hello,\n\n' +
                     'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
