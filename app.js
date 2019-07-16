@@ -15,8 +15,14 @@ const commentRoutes    = require('./routes/comments'),
 
 const app = express();
 
+const databaseUrl = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v5";
+mongoose.connect(databaseUrl, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+});
+
 app.set('view engine', 'ejs');
-mongoose.connect('mongodb://localhost/yelp_camp_v5', {useNewUrlParser: true, useFindAndModify: false});
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
