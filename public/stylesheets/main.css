@@ -1,0 +1,25 @@
+div.row.text-center {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+#formContainer {
+    width: 30%;
+    margin: 30px auto;
+}
+
+.delete-form {
+    display: inline;
+}
+
+.adminRegister {
+    display: none;
+}
