@@ -5,11 +5,10 @@ const express        = require('express'),
       passport       = require('passport'),
       LocalStrategy  = require('passport-local'),
       methodOverride = require('method-override'),
-      User           = require('./models/user'),
-    //   seedDB         = require('./seeds');
+      User           = require('./models/user');
 
 // Requiring Routes
-var commentRoutes    = require('./routes/comments'),
+const commentRoutes    = require('./routes/comments'),
       campgroundRoutes = require('./routes/campgrounds'),
       indexRoutes      = require('./routes/index');
 
@@ -27,7 +26,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 app.use(flash());
-// seedDB();
 
 app.locals.moment = require('moment');
 
