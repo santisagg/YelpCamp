@@ -6,7 +6,7 @@ const express        = require('express'),
       LocalStrategy  = require('passport-local'),
       methodOverride = require('method-override'),
       User           = require('./models/user'),
-      seedDB         = require('./seeds');
+    //   seedDB         = require('./seeds');
 
 // Requiring Routes
 const commentRoutes    = require('./routes/comments'),
