@@ -9,7 +9,7 @@ const express        = require('express'),
     //   seedDB         = require('./seeds');
 
 // Requiring Routes
-const commentRoutes    = require('./routes/comments'),
+var commentRoutes    = require('./routes/comments'),
       campgroundRoutes = require('./routes/campgrounds'),
       indexRoutes      = require('./routes/index');
 
