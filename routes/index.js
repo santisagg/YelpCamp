@@ -233,7 +233,7 @@ router.get('/users/:id', function(req, res) {
                     req.flash('error', 'Oops! Something went wrong');
                     res.redirect('back');
                 } else {
-                    res.render('users/show', {user: foundUser, campgrounds: userCampgrounds});
+                    res.render('users/show', {user: foundUser, campgrounds: userCampgrounds, page: 'profile'});
                 }
             });
         }

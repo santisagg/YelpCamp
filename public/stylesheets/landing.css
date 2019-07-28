@@ -2,6 +2,10 @@ body {
     background-color: #000;
 }
 
+footer {
+    display: none;
+}
+
 #landing-header {
     padding-top: 40vh;
     position: relative;

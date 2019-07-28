@@ -2,31 +2,37 @@
 
 <div class="row">
     <div class="col-md-4">
-        <h1><%= user.firstName + ' ' + user.lastName %></h1>
-        <a href="mailto:<%= user.email %>"><%= user.email %></a>
-        <div class="thumbnail">
-            <img src="<%= user.avatar %>" alt="user profile image">
+        <div class="card">
+            <img class="card-img-top" src="<%= user.avatar %>" alt="user profile image">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%= user.firstName + ' ' + user.lastName %>
+                </h5>
+                <a href="mailto:<%= user.email %>"><%= user.email %></a>
+                <p class="card-text pt-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias, 
+                    obcaecati laboriosam, commodi debitis amet et, harum ea aliquam quos. Ratione quis 
+                    sapiente quos eligendi tempore tempora reiciendis, pariatur, adipisci quo animi soluta, 
+                    nobis eveniet dolore labore placeat cupiditate temporibus quod a natus velit esse nihil ut. 
+                    Dolores neque, cupiditate magnam, nulla corrupti earum odit, reprehenderit nobis voluptatum 
+                    pariatur eius maxime soluta?
+                </p>
+            </div>
         </div>
-        <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias, 
-            obcaecati laboriosam, commodi debitis amet et, harum ea aliquam quos. Ratione quis 
-            sapiente quos eligendi tempore tempora reiciendis, pariatur, adipisci quo animi soluta, 
-            nobis eveniet dolore labore placeat cupiditate temporibus quod a natus velit esse nihil ut. 
-            Dolores neque, cupiditate magnam, nulla corrupti earum odit, reprehenderit nobis voluptatum 
-            pariatur eius maxime soluta?
-        </p>
     </div>
-    <div class="col-md-8">
-        <h3><%= user.username %>'s Campgrounds:</h3>
+    <div class="col-md-8 mt-4 mt-md-0">
+        <h3 class="mb-4"><%= user.username %>'s Campgrounds:</h3>
         <div class="row">
             <% campgrounds.forEach(function(campground) { %>
-                <div class="col-md-4">
-                <a href="/campgrounds/<%= campground.slug %>">
-                    <div class="thumbnail">
-                        <img src="<%= campground.image %>" alt="campground image">
-                        <div class="caption"><%= campground.name %></div>
-                    </div>
-                </a>
+                <div class="col-md-4 pb-4">
+                    <a href="/campgrounds/<%= campground.slug %>">
+                        <div class="card">
+                            <img class="card-img-top" src="<%= campground.image %>" alt="Campground image">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"><%= campground.name %></h5>
+                            </div>
+                        </div>
+                    </a>
                 </div>
             <% }); %>
         </div>

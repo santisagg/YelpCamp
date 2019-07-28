@@ -1,9 +1,8 @@
 <% include partials/header %>
 
-<div class="row">
-    <h1 class="text-center">Forgot Password</h1>
-
-    <div id="formContainer">
+<div class="row justify-content-center">
+    <div class="col-4">
+        <h1 class="h3 mb-3 font-weight-normal text-center">Forgot Password?</h1>
         <form action="/forgot" method="POST">
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -12,9 +11,9 @@
             <div class="form-group">
                 <input class="btn btn-lg btn-primary btn-block" type="submit" value="Send Reset Email">
             </div>
-
-            <a href="/login">Back</a>
         </form>
+
+        <a href="/login">Back</a>
     </div>
 </div>
 
