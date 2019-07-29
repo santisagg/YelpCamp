@@ -1,3 +1,3 @@
-$('.float-right').on('click', function() {
+$('#adminButton').on('click', function() {
     $('.adminRegister').fadeToggle(400);
 });

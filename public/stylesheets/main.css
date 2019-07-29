@@ -1,6 +1,7 @@
+/* Sticky Footer */
 html {
-    position: relative;
     min-height: 100%;
+    position: relative;
 }
 
 body {
@@ -8,18 +9,19 @@ body {
 }
 
 footer {
-    position: absolute;
-    bottom:  0;
-    width: 100%;
-    height: 60px;
     background-color: #f5f5f5;
+    bottom:  0;
+    height: 60px;
+    position: absolute;
+    width: 100%;
 }
 
-a {
+/* Main Content */
+a, #adminButton {
   color: #343a40;
 }
 
-a:hover {
+a:hover, #adminButton:hover {
   color: #121416;
 }
 
@@ -33,24 +35,33 @@ div.row.text-center {
 }
 
 #formContainer {
-    width: 30%;
     margin: 30px auto;
+    width: 30%;
 }
 
 .deleteForm {
     display: inline;
 }
 
+/* Admin Input/Button */
 .adminRegister {
     display: none;
 }
 
+#adminButton {
+    cursor: pointer;
+}
+
+#adminButton:hover {
+    text-decoration: underline;
+}
+
 /* Sign In Form */
 .form-signin {
-    width: 100%;
+    margin: auto;
     max-width: 330px;
     padding: 15px;
-    margin: auto;
+    width: 100%;
 }
 
 .form-signin .checkbox {
@@ -58,11 +69,11 @@ div.row.text-center {
 }
 
 .form-signin .form-control {
-    position: relative;
     box-sizing: border-box;
+    font-size: 16px;
     height: auto;
     padding: 10px;
-    font-size: 16px;
+    position: relative;
 }
 
 .form-signin .form-control:focus {
@@ -70,13 +81,13 @@ div.row.text-center {
 }
 
 .form-signin .firstInput {
-    margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
+    margin-bottom: -1px;
 }
 
 .form-signin .lastInput {
-    margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+    margin-bottom: 10px;
 }
