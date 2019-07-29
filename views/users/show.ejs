@@ -5,9 +5,11 @@
         <div class="card">
             <img class="card-img-top" src="<%= user.avatar %>" alt="user profile image">
             <div class="card-body">
+                <span>Name:</span>
                 <h5 class="card-title">
                     <%= user.firstName + ' ' + user.lastName %>
                 </h5>
+                <span>Email:</span>
                 <a href="mailto:<%= user.email %>"><%= user.email %></a>
                 <p class="card-text pt-3">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore deleniti alias, 

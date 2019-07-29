@@ -25,8 +25,10 @@ router.post('/register', function(req, res) {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        avatar: req.body. avatar
     });
+    if(req.body.avatar !== '') {
+        newUser.avatar = req.body.avatar;
+    }
     if(req.body.adminCode === 'iamadmin') {
         newUser.isAdmin = true;
     }
