@@ -14,7 +14,9 @@ const commentRoutes    = require('./routes/comments'),
 
 const app = express();
 
-const databaseUrl = process.env.DATABASEURL || "mongodb://localhost/yelp_camp_v5";
+require('dotenv').config();
+
+const databaseUrl = process.env.DATABASE_URL || "mongodb://localhost/yelp_camp_v5";
 mongoose.connect(databaseUrl, {
     useNewUrlParser: true,
     useFindAndModify: false,

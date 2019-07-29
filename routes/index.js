@@ -29,7 +29,7 @@ router.post('/register', function(req, res) {
     if(req.body.avatar !== '') {
         newUser.avatar = req.body.avatar;
     }
-    if(req.body.adminCode === 'iamadmin') {
+    if(req.body.adminCode === process.env.ADMIN_CODE) {
         newUser.isAdmin = true;
     }
     User.register(newUser, req.body.password, function(err, user) {
@@ -109,7 +109,7 @@ router.post('/forgot', function(req, res) {
                 service: 'Gmail',
                 auth: {
                     user: 'yelpcamp.resetpw@gmail.com',
-                    pass: process.env.GMAILPW
+                    pass: process.env.GMAIL_PW
                 }
             });
             let mailOptions = {
@@ -198,7 +198,7 @@ router.post('/reset/:token', function(req, res) {
                 service: 'Gmail',
                 auth: {
                     user: 'yelpcamp.resetpw@gmail.com',
-                    pass: process.env.GMAILPW
+                    pass: process.env.GMAIL_PW
                 }
             });
             let mailOptions = {
