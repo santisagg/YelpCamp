@@ -28,6 +28,10 @@ div.row.text-center {
     flex-wrap: wrap;
 }
 
+#mainContent {
+    padding-bottom: 2rem;
+}
+
 #formContainer {
     width: 30%;
     margin: 30px auto;
@@ -47,27 +51,32 @@ div.row.text-center {
     max-width: 330px;
     padding: 15px;
     margin: auto;
-  }
-  .form-signin .checkbox {
+}
+
+.form-signin .checkbox {
     font-weight: 400;
-  }
-  .form-signin .form-control {
+}
+
+.form-signin .form-control {
     position: relative;
     box-sizing: border-box;
     height: auto;
     padding: 10px;
     font-size: 16px;
-  }
-  .form-signin .form-control:focus {
+}
+
+.form-signin .form-control:focus {
     z-index: 2;
-  }
-  .form-signin .firstInput {
+}
+
+.form-signin .firstInput {
     margin-bottom: -1px;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-  }
-  .form-signin .lastInput {
+}
+
+.form-signin .lastInput {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
-  }
+}
