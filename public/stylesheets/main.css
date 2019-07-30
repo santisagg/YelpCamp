@@ -17,6 +17,12 @@ footer {
 }
 
 /* Main Content */
+header {
+    background-image: url(https://empirechamber.com/wp-content/uploads/2017/07/hero1-4.jpg);
+    background-size: cover;
+    /* color: lightgray; */
+}
+
 a, #adminButton {
   color: #343a40;
 }

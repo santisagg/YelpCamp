@@ -1,12 +1,32 @@
 <% include ../partials/header %>
 
 <div class="row">
-    <div class="col-md-3">
-        <p class="lead">YelpCamp</p>
-        <div class="list-group">
-            <li class="list-group-item active">Info 1</li>
-            <li class="list-group-item">Info 2</li>
-            <li class="list-group-item">Info 3</li>
+    <div class="col-md-3 mb-3">
+            <h1 class="h3 mb-3 font-weight-normal"><%= campground.name %></h1>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-calendar-week"></i> Availability
+            </div>
+            <div class="card-body">
+                <p class="card-text">May-September</p>
+            </div>
+        </div>
+        <div class="card mb-3">
+            <div class="card-header">
+                <i class="fas fa-wifi"></i> Extras
+            </div>
+            <div class="card-body">
+                <p class="card-text">Shower, Wi-fi</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-phone-alt"></i> Contact
+            </div>
+            <div class="card-body">
+                <p class="card-text">210-1234567</p>
+            </div>
         </div>
     </div>
     <div class="col-md-9">
@@ -19,6 +39,7 @@
                 <h5 class="card-title">
                     <%= campground.name %>
                 </h5>
+                <hr>
                 <p class="card-text">
                     <%= campground.description %>
                 </p>
@@ -43,24 +64,30 @@
             <ul class="list-group list-group-flush">
                 <% campground.comments.forEach(function(comment) { %>
                         <li class="list-group-item">
-                            <div class="float-left">
-                                <a href="/users/<%= comment.author.id %>">
-                                    <strong><%= comment.author.username %></strong>
-                                </a>
-                                
-                                <p><em><%= comment.text %></em></p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="/users/<%= comment.author.id %>">
+                                        <strong><%= comment.author.username %></strong>
+                                    </a>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <p>
+                                        <em><%= moment(comment.createdAt).fromNow() %></em>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="float-right">
-                                <p>
-                                    <em><%= moment(comment.createdAt).fromNow() %></em>
-                                </p>
-                                
-                                <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
-                                    <a href="/campgrounds/<%= campground.slug %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-outline-warning">Edit</a>
-                                    <form class="deleteForm" action="/campgrounds/<%= campground.slug %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                        <button class="btn btn-sm btn-outline-danger">Delete</button>
-                                    </form>
-                                <% }; %>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p><em><%= comment.text %></em></p>
+                                </div>
+                                <div class="col-6 text-right">
+                                    <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
+                                        <a href="/campgrounds/<%= campground.slug %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-outline-warning">Edit</a>
+                                        <form class="deleteForm" action="/campgrounds/<%= campground.slug %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                            <button class="btn btn-sm btn-outline-danger">Delete</button>
+                                        </form>
+                                    <% }; %>
+                                </div>
                             </div>
                         </li>        
                 <% }); %>
