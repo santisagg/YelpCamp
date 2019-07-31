@@ -2,14 +2,13 @@
 
 <div class="row">
     <div class="col-md-3 mb-3">
-            <h1 class="h3 mb-3 font-weight-normal"><%= campground.name %></h1>
-
+        <h1 class="h3 mb-3 font-weight-normal"><%= campground.name %></h1>
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-calendar-week"></i> Availability
             </div>
             <div class="card-body">
-                <p class="card-text">May-September</p>
+                <p class="card-text"><%= campground.availability %></p>
             </div>
         </div>
         <div class="card mb-3">
@@ -17,7 +16,7 @@
                 <i class="fas fa-wifi"></i> Extras
             </div>
             <div class="card-body">
-                <p class="card-text">Shower, Wi-fi</p>
+                <p class="card-text"><%= campground.extras %></p>
             </div>
         </div>
         <div class="card">
@@ -25,7 +24,7 @@
                 <i class="fas fa-phone-alt"></i> Contact
             </div>
             <div class="card-body">
-                <p class="card-text">210-1234567</p>
+                <p class="card-text"><%= campground.contact %></p>
             </div>
         </div>
     </div>
@@ -39,7 +38,6 @@
                 <h5 class="card-title">
                     <%= campground.name %>
                 </h5>
-                <hr>
                 <p class="card-text">
                     <%= campground.description %>
                 </p>

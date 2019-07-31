@@ -63,12 +63,12 @@ div.row.text-center {
 }
 
 /* Sign In Form */
-.form-signin {
+/* .form-signin {
     margin: auto;
     max-width: 330px;
     padding: 15px;
     width: 100%;
-}
+} */
 
 .form-signin .checkbox {
     font-weight: 400;

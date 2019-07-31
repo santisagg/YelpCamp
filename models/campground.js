@@ -7,6 +7,9 @@ const campgroundSchema = new mongoose.Schema({
     },
     image: String,
     price: String,
+    availability: String,
+    extras: String,
+    contact: String,
     description: String,
     createdAt: {
         type: Date,

@@ -1,40 +1,42 @@
 <% include partials/header %>
 
 <div class="row justify-content-center">
-    <div class="col-12 col-md-6 col-lg-4">
+    <div class="col-10 col-sm-8 col-md-6 col-xl-4">
         <h1 class="h3 mb-3 font-weight-normal text-center">Sign Up</h1>
-        <form class="form-signin" action="/register" method="POST">
-            <div class="form-group">
-                <label for="username">Username:</label>
-                <input class="form-control" type="text" name="username" placeholder="JohnDoe" id="username" required autofocus> 
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input class="form-control" type="password" name="password" placeholder="********" id="password" required>
-            </div>
-            <div class="form-group">
-                <label for="firstName">First Name:</label>
-                <input class="form-control" type="text" name="firstName" placeholder="John" id="firstName"> 
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name:</label>
-                <input class="form-control" type="text" name="lastName" placeholder="Doe" id="lastName"> 
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input class="form-control" type="email" name="email" placeholder="john.doe@domain.com" id="email" required> 
-            </div>
-            <div class="form-group">
-                <label for="avatar">Avatar URL:</label>
-                <input class="form-control" type="text" name="avatar" placeholder="http://your.avatar.url" id="avatar"> 
-            </div>
-            <div class="form-group adminRegister">
-                <label for="adminCode">Admin Code:</label>
-                <input class="form-control" type="password" name="adminCode" id="adminCode">
+        <form action="/register" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" name="username" placeholder="JohnDoe" id="username" required autofocus> 
+                </div>
+                <div class="form-group col-12">
+                    <label for="password">Password:</label>
+                    <input class="form-control" type="password" name="password" placeholder="********" id="password" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="firstName">First Name:</label>
+                    <input class="form-control" type="text" name="firstName" placeholder="John" id="firstName"> 
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="lastName">Last Name:</label>
+                    <input class="form-control" type="text" name="lastName" placeholder="Doe" id="lastName"> 
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="email" name="email" placeholder="john.doe@domain.com" id="email" required> 
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="avatar">Avatar URL:</label>
+                    <input class="form-control" type="text" name="avatar" placeholder="http://your.avatar.url" id="avatar"> 
+                </div>
+                <div class="form-group col-12 adminRegister">
+                    <label for="adminCode">Admin Code:</label>
+                    <input class="form-control" type="password" name="adminCode" id="adminCode">
+                </div>
             </div>
             <input class="btn btn-lg btn-primary btn-block" type="submit" value="Sign Up">
         </form>
-        <div class="form-signin">
+        <div class="pt-3">
             <a href="/campgrounds">Back</a>
             <p class="float-right" id="adminButton">Register an admin account</p>
         </div>

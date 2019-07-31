@@ -37,15 +37,18 @@ router.get('/new', middleware.isLoggedIn, function(req, res) {
 
 // Create Campground Route
 router.post('/', middleware.isLoggedIn, function(req, res) {
-    let name = req.body.name;
-    let image = req.body.image;
-    let price = req.body.price;
-    let desc = req.body.description;
-    let author = {
-        id: req.user._id,
-        username: req.user.username
-    };
-    newCampground = { name: name, image: image, price: price, description: desc, author: author };
+    let name = req.body.name,
+        image = req.body.image,
+        price = req.body.price,
+        availability = req.body.availability,
+        extras = req.body.extras,
+        contact = req.body.contact,
+        desc = req.body.description,
+        author = {
+            id: req.user._id,
+            username: req.user.username
+        };
+    newCampground = { name: name, image: image, price: price, availability: availability, extras: extras, contact: contact, description: desc, author: author };
     Campground.create(newCampground, function(err, newlyCreated) {
         if(err) {
             console.log(err);
@@ -88,6 +91,9 @@ router.put('/:slug/', middleware.checkCampgroundOwnership, function( req, res) {
             campground.image = req.body.campground.image;
             campground.description = req.body.campground.description;
             campground.price = req.body.campground.price;
+            campground.availability = req.body.campground.availability;
+            campground.extras = req.body.campground.extras;
+            campground.contact = req.body.campground.contact;
             campground.save(function(err) {
                 if(err) {
                     req.flash('error', 'Oops, something went wrong!');
