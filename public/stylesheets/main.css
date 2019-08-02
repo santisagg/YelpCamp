@@ -70,11 +70,11 @@ div.row.text-center {
     width: 100%;
 } */
 
-.form-signin .checkbox {
+.checkbox {
     font-weight: 400;
 }
 
-.form-signin .form-control {
+.form-control {
     box-sizing: border-box;
     font-size: 16px;
     height: auto;
@@ -82,17 +82,17 @@ div.row.text-center {
     position: relative;
 }
 
-.form-signin .form-control:focus {
+.form-control:focus {
     z-index: 2;
 }
 
-.form-signin .firstInput {
+.firstInput {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     margin-bottom: -1px;
 }
 
-.form-signin .lastInput {
+.lastInput {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     margin-bottom: 10px;

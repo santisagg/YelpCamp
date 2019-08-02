@@ -27,15 +27,15 @@
         <h3 class="mb-4"><%= user.username %>'s Campgrounds:</h3>
         <div class="row">
             <% campgrounds.forEach(function(campground) { %>
-                <div class="col-md-4 pb-4">
-                    <a href="/campgrounds/<%= campground.slug %>">
-                        <div class="card">
+                <div class="col-md-4 pb-4 d-flex align-self-stretch">
+                    <div class="card">
+                        <a href="/campgrounds/<%= campground.slug %>">
                             <img class="card-img-top" src="<%= campground.image %>" alt="Campground image">
                             <div class="card-body">
                                 <h5 class="card-title text-center"><%= campground.name %></h5>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
             <% }); %>
         </div>
