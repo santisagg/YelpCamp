@@ -2,6 +2,7 @@ const express    = require('express'),
       router     = express.Router(),
       Campground = require('../models/campground'),
       Comment    = require('../models/comment'),
+      Review     = require('../models/review'),
       middleware = require('../middleware');
 
 // Index Route
@@ -61,7 +62,10 @@ router.post('/', middleware.isLoggedIn, function(req, res) {
 
 // Show Campground Route
 router.get('/:slug', function(req, res) {
-    Campground.findOne({slug: req.params.slug}).populate('comments').exec(function(err, foundCampground) {
+    Campground.findOne({slug: req.params.slug}).populate('comments').populate({
+        path: 'reviews',
+        options: {sort: {createdAt: -1}}
+    }).exec(function(err, foundCampground) {
         if(err) {
             console.log(err);
         } else {
@@ -83,6 +87,7 @@ router.get('/:slug/edit', middleware.checkCampgroundOwnership, function(req, res
 
 // Update Campground Route
 router.put('/:slug/', middleware.checkCampgroundOwnership, function( req, res) {
+    delete req.body.campground.rating;
     Campground.findOne({slug: req.params.slug}, function(err, campground) {
         if(err) {
             res.redirect('/campgrounds/edit');
@@ -109,18 +114,20 @@ router.put('/:slug/', middleware.checkCampgroundOwnership, function( req, res) {
 
 // Destroy Campground Route
 router.delete('/:id', middleware.checkCampgroundOwnership, function(req, res) {
-    Campground.findOneAndRemove({slug: req.params.slug}, function(err, deletedCampground) {
+    Campground.findOne({slug: req.params.slug}, function(err, campground) {
        if(err) {
             res.redirect('/campgrounds');
        } else {
-            Comment.deleteMany({_id: {$in: deletedCampground.comments}}, function(err, deletedComments) {
+            Comment.remove({"_id": {$in: campground.comments}}, function(err) {
                 if(err) {
                     console.log(err);
-                    res.redirect('/campgrounds');
-                } else {
-                    req.flash('success', 'Campground deleted.');
-                    res.redirect('/campgrounds');
+                    return res.redirect('/campgrounds');
                 }
+                Review.remove({"_id": {$in: campground.reviews}}, function(err) {
+                    campground.remove();
+                    req.flash('success', 'Campground deleted successfully.');
+                    res.redirect('/campgrounds');
+                })
             });
        }
     });

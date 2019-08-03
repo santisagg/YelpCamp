@@ -2,7 +2,7 @@
 
 <div class="row justify-content-center">
     <div class="col-8 col-md-6 col-lg-4">
-        <h1 class="h3 mb-3 font-weight-normal text-center">Add New Comment to <%= campground.name %></h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">Add Comment to:<br><%= campground.name %></h1>
         <form action="/campgrounds/<%= campground.slug %>/comments" method="POST">
             <div class="form-group">
                 <label for="text">Your Comment:</label>
@@ -13,7 +13,7 @@
             </div>
         </form>
 
-        <a href="/campgrounds/<%= campground.slug %>">Back</a>
+        <a href="/campgrounds/<%= campground.slug %>"><i class="fa fa-arrow-left"></i> Back</a>
     </div>
 </div>
 

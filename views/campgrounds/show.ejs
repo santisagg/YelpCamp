@@ -1,5 +1,6 @@
 <% include ../partials/header %>
 
+<!-- Extra info section -->
 <div class="row">
     <div class="col-md-3 mb-3">
         <h1 class="h3 mb-3 font-weight-normal"><%= campground.name %></h1>
@@ -28,18 +29,22 @@
             </div>
         </div>
     </div>
+
+<!-- Campground info section -->
     <div class="col-md-9">
         <div class="card mb-4">
             <img class="card-img-top" src="<%= campground.image %>" alt="Campground Image">
             <div class="card-body">
                 <p class="float-right font-weight-bold">
-                    $<%= campground.price %>/night   
+                    $<%= campground.price %>/night 
                 </p>
                 <h5 class="card-title">
                     <%= campground.name %>
                 </h5>
                 <p class="card-text">
-                    <%= campground.description %>
+                        <em>Description:</em>
+                        <br>
+                        <%= campground.description %>
                 </p>
                 <hr>
                 <% if(currentUser && campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
@@ -53,12 +58,88 @@
                 <p>
                     <em>Submitted By: <strong><a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a></strong>, <%= moment(campground.createdAt).fromNow() %></em>
                 </p>
+                <% if(campground.rating !== 0) { %>
+                    <p>
+                        <span class="fas fa-star checked"></span>
+                        <span class="fas fa-star <% if(campground.rating > 1.5) { %> checked <% } %>"></span>
+                        <span class="fas fa-star <% if(campground.rating > 2.5) { %> checked <% } %>"></span>
+                        <span class="fas fa-star <% if(campground.rating > 3.5) { %> checked <% } %>"></span>
+                        <span class="fas fa-star <% if(campground.rating > 4.5) { %> checked <% } %>"></span>
+                        <em>(total reviews: <%= campground.reviews.length %>)</em>
+                    </p>
+                    <p>
+                        Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
+                    </p>
+                <% } %>
             </div>
         </div>
-        <div class="text-right">
+
+<!-- Review section -->
+        <div class="card">
+            <% if(campground.rating === 0) { %>
+                <div class="card-header">
+                    <h5>
+                        <em>No reviews yet.</em>
+                    </h5>
+                </div>
+            <% } else { %>
+                <!-- <p>
+                    <span class="fas fa-star checked"></span>
+                    <span class="fas fa-star <% if(campground.rating > 1.5) { %> checked <% } %>"></span>
+                    <span class="fas fa-star <% if(campground.rating > 2.5) { %> checked <% } %>"></span>
+                    <span class="fas fa-star <% if(campground.rating > 3.5) { %> checked <% } %>"></span>
+                    <span class="fas fa-star <% if(campground.rating > 4.5) { %> checked <% } %>"></span>
+                    <em>(total reviews: <%= campground.reviews.length %>)</em>
+                </p>
+                <p>
+                    Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
+                </p> -->
+                <div class="card-header"><h4>Latest reviews for this campground:</h4></div>
+                <ul class="list-group list-group-flush">
+                    <% campground.reviews.slice(0, 5).forEach(function(review) { %>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <%- '<span class="fas fa-star checked"></span>'.repeat(review.rating) %>
+                                    <%- '<span class="fas fa-star"></span>'.repeat(5 - review.rating) %>
+                                    <div>Review by: <strong><%= review.author.username %></strong></div>
+                                    <span><em><%= review.updatedAt.toDateString() %></em></span>
+                                </div>
+                                <div class="col-md-9">
+                                    <p class="pl-3"><%= review.text %></p>
+                                    <% if(currentUser && review.author.id.equals(currentUser._id)) { %>
+                                        <div class="text-right">
+                                            <a href="/campgrounds/<%= campground.slug %>/reviews/<%= review._id %>/edit"
+                                            class="btn btn-sm btn-outline-warning">Edit</a>
+    
+                                            <form action="/campgrounds/<%= campground.slug %>/reviews/<%= review._id %>?_method=DELETE"
+                                            class="deleteForm" method="POST">
+                                                <input type="submit" value="Delete" class="btn btn-sm btn-outline-danger">
+                                            </form>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </li>
+                    <% }); %>
+                </ul>
+            <% } %>
+            <div class="my-3 text-center">
+                    <h4>
+                        <a href="/campgrounds/<%= campground.slug %>/reviews">
+                            <i class="fa fa-search" aria-hidden="true"></i> See all reviews
+                        </a>
+                    </h4>
+                    <a href="/campgrounds/<%= campground.slug %>/reviews/new" class="btn btn-dark">Write a Review</a>
+            </div>
+        </div>
+
+<!-- Comment section -->
+        <div class="text-right mt-4">
             <a href="/campgrounds/<%= campground.slug %>/comments/new" class="btn btn-success">Add New Comment</a>
         </div>
         <div class="card mt-4">
+            <div class="card-header"><h4>Comments:</h4></div>
             <ul class="list-group list-group-flush">
                 <% campground.comments.forEach(function(comment) { %>
                         <li class="list-group-item">
