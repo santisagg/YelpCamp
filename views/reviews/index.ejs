@@ -36,7 +36,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <p><%= review.text %></p>
-                                    <% if(currentUser && review.author.id.equals(currentUser._id)) { %>
+                                    <% if(currentUser && review.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                                         <div class="text-right">
                                             <a href="/campgrounds/<%= campground.slug %>/reviews/<%= review._id %>/edit"
                                             class="btn btn-sm btn-outline-warning">Edit</a>

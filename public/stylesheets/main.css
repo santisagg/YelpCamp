@@ -18,7 +18,8 @@ footer {
 
 /* Main Content */
 header {
-    background-image: url(https://empirechamber.com/wp-content/uploads/2017/07/hero1-4.jpg);
+    background-image: linear-gradient(160deg, rgb(237, 241, 241) 43%, rgba(138,227,245,1) 63%, rgba(0,172,255,0.36458333333333337) 75%),
+                    url(https://empirechamber.com/wp-content/uploads/2017/07/hero1-4.jpg);
     background-size: cover;
 }
 

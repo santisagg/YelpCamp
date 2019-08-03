@@ -60,15 +60,13 @@
                 </p>
                 <% if(campground.rating !== 0) { %>
                     <p>
+                        <span>Rating: <strong><%= campground.rating.toFixed(2) %></strong></span>
                         <span class="fas fa-star checked"></span>
                         <span class="fas fa-star <% if(campground.rating > 1.5) { %> checked <% } %>"></span>
                         <span class="fas fa-star <% if(campground.rating > 2.5) { %> checked <% } %>"></span>
                         <span class="fas fa-star <% if(campground.rating > 3.5) { %> checked <% } %>"></span>
                         <span class="fas fa-star <% if(campground.rating > 4.5) { %> checked <% } %>"></span>
                         <em>(total reviews: <%= campground.reviews.length %>)</em>
-                    </p>
-                    <p>
-                        Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
                     </p>
                 <% } %>
             </div>
@@ -107,7 +105,7 @@
                                 </div>
                                 <div class="col-md-9">
                                     <p class="pl-3"><%= review.text %></p>
-                                    <% if(currentUser && review.author.id.equals(currentUser._id)) { %>
+                                    <% if(currentUser && review.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                                         <div class="text-right">
                                             <a href="/campgrounds/<%= campground.slug %>/reviews/<%= review._id %>/edit"
                                             class="btn btn-sm btn-outline-warning">Edit</a>
@@ -135,11 +133,14 @@
         </div>
 
 <!-- Comment section -->
-        <div class="text-right mt-4">
-            <a href="/campgrounds/<%= campground.slug %>/comments/new" class="btn btn-success">Add New Comment</a>
-        </div>
+      
         <div class="card mt-4">
-            <div class="card-header"><h4>Comments:</h4></div>
+            <div class="card-header">
+                <div class="float-right">
+                    <a href="/campgrounds/<%= campground.slug %>/comments/new" class="btn btn-secondary">Add New Comment</a>
+                </div>
+                <h4>Comments:</h4>
+            </div>
             <ul class="list-group list-group-flush">
                 <% campground.comments.forEach(function(comment) { %>
                         <li class="list-group-item">
