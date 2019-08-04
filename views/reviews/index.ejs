@@ -13,15 +13,15 @@
                         </h5>
                     <% } else { %>
                         <p>
+                            Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
+                        </p>
+                        <p>
                             <span class="fas fa-star checked"></span>
                             <span class="fas fa-star <% if(campground.rating > 1.5) { %> checked <% } %>"></span>
                             <span class="fas fa-star <% if(campground.rating > 2.5) { %> checked <% } %>"></span>
                             <span class="fas fa-star <% if(campground.rating > 3.5) { %> checked <% } %>"></span>
                             <span class="fas fa-star <% if(campground.rating > 4.5) { %> checked <% } %>"></span>
                             <em>(total reviews: <%= campground.reviews.length %>)</em>
-                        </p>
-                        <p>
-                            Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
                         </p>
                         <p class="pt-3"><h4>All reviews for this campground:</h4></p>
                         <hr>

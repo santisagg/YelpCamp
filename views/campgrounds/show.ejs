@@ -74,26 +74,15 @@
 
 <!-- Review section -->
         <div class="card">
-            <% if(campground.rating === 0) { %>
-                <div class="card-header">
-                    <h5>
-                        <em>No reviews yet.</em>
-                    </h5>
-                </div>
-            <% } else { %>
-                <!-- <p>
-                    <span class="fas fa-star checked"></span>
-                    <span class="fas fa-star <% if(campground.rating > 1.5) { %> checked <% } %>"></span>
-                    <span class="fas fa-star <% if(campground.rating > 2.5) { %> checked <% } %>"></span>
-                    <span class="fas fa-star <% if(campground.rating > 3.5) { %> checked <% } %>"></span>
-                    <span class="fas fa-star <% if(campground.rating > 4.5) { %> checked <% } %>"></span>
-                    <em>(total reviews: <%= campground.reviews.length %>)</em>
-                </p>
-                <p>
-                    Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
-                </p> -->
-                <div class="card-header"><h4>Latest reviews for this campground:</h4></div>
-                <ul class="list-group list-group-flush">
+            <div class="card-header"><h4>Latest reviews for this campground:</h4></div>
+            <ul class="list-group list-group-flush">
+                <% if(campground.rating === 0) { %>
+                    <li class="list-group-item">
+                        <h5>
+                            <em>No reviews yet.</em>
+                        </h5>
+                    </li>
+                <% } else { %>
                     <% campground.reviews.slice(0, 5).forEach(function(review) { %>
                         <li class="list-group-item">
                             <div class="row">
@@ -120,20 +109,21 @@
                             </div>
                         </li>
                     <% }); %>
-                </ul>
-            <% } %>
+                <% } %>
+            </ul>
             <div class="my-3 text-center">
+                <% if(campground.rating !== 0) { %>
                     <h4>
                         <a href="/campgrounds/<%= campground.slug %>/reviews">
                             <i class="fa fa-search" aria-hidden="true"></i> See all reviews
                         </a>
                     </h4>
-                    <a href="/campgrounds/<%= campground.slug %>/reviews/new" class="btn btn-dark">Write a Review</a>
+                <% } %>
+                <a href="/campgrounds/<%= campground.slug %>/reviews/new" class="btn btn-dark">Write a Review</a>
             </div>
         </div>
 
 <!-- Comment section -->
-      
         <div class="card mt-4">
             <div class="card-header">
                 <div class="float-right">
@@ -142,6 +132,13 @@
                 <h4>Comments:</h4>
             </div>
             <ul class="list-group list-group-flush">
+                <% if(campground.comments.length === 0) { %>
+                    <li class="list-group-item">
+                        <h5>
+                            <em>No comments yet.</em>
+                        </h5>
+                    </li>
+                <% } %>
                 <% campground.comments.forEach(function(comment) { %>
                         <li class="list-group-item">
                             <div class="row">
