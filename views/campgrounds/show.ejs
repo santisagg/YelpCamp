@@ -5,26 +5,26 @@
     <div class="col-md-3 mb-3">
         <h1 class="h3 mb-3 font-weight-normal"><%= campground.name %></h1>
         <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header p-2">
                 <i class="fas fa-calendar-week"></i> Availability
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <p class="card-text"><%= campground.availability %></p>
             </div>
         </div>
         <div class="card mb-3">
-            <div class="card-header">
+            <div class="card-header p-2">
                 <i class="fas fa-wifi"></i> Extras
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <p class="card-text"><%= campground.extras %></p>
             </div>
         </div>
         <div class="card">
-            <div class="card-header">
+            <div class="card-header p-2">
                 <i class="fas fa-phone-alt"></i> Contact
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
                 <p class="card-text"><%= campground.contact %></p>
             </div>
         </div>
@@ -42,8 +42,6 @@
                     <%= campground.name %>
                 </h5>
                 <p class="card-text">
-                        <em>Description:</em>
-                        <br>
                         <%= campground.description %>
                 </p>
                 <hr>
@@ -74,7 +72,7 @@
 
 <!-- Review section -->
         <div class="card">
-            <div class="card-header"><h4>Latest reviews for this campground:</h4></div>
+            <div class="card-header"><h4>Latest reviews:</h4></div>
             <ul class="list-group list-group-flush">
                 <% if(campground.rating === 0) { %>
                     <li class="list-group-item">
@@ -89,7 +87,7 @@
                                 <div class="col-md-3">
                                     <%- '<span class="fas fa-star checked"></span>'.repeat(review.rating) %>
                                     <%- '<span class="fas fa-star"></span>'.repeat(5 - review.rating) %>
-                                    <div>Review by: <strong><%= review.author.username %></strong></div>
+                                    <div>Review by: <strong><a href="/users/<%= review.author.id %>"><%= review.author.username %></a></strong></div>
                                     <span><em><%= review.updatedAt.toDateString() %></em></span>
                                 </div>
                                 <div class="col-md-9">
@@ -142,12 +140,12 @@
                 <% campground.comments.forEach(function(comment) { %>
                         <li class="list-group-item">
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-9">
                                     <a href="/users/<%= comment.author.id %>">
                                         <strong><%= comment.author.username %></strong>
                                     </a>
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-3 text-right">
                                     <p>
                                         <em><%= moment(comment.createdAt).fromNow() %></em>
                                     </p>
@@ -155,7 +153,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <p><em><%= comment.text %></em></p>
+                                    <p class="mb-0"><em><%= comment.text %></em></p>
                                 </div>
                                 <div class="col-6 text-right">
                                     <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>

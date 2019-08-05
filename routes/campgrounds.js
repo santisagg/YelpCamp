@@ -7,13 +7,16 @@ const express    = require('express'),
 
 // Index Route
 router.get('/', function(req, res) {
-    let perPage = 8;
-    let pageQuery = parseInt(req.query.page);
-    let pageNumber = pageQuery ? pageQuery : 1;
-    let noMatch = null;
+    let perPage    = 8,
+        pageQuery  = parseInt(req.query.page),
+        pageNumber = pageQuery ? pageQuery : 1,
+        noMatch    = null,
+        sortField  = req.query.sortField,
+        sortOrder  = +req.query.sortOrder,
+        sortBy     = {[sortField]: sortOrder};
     if(req.query.search) {
         const regex = new RegExp(escapeRegex(req.query.search), 'gi');
-        Campground.find({name: regex}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, campgrounds) {
+        Campground.find({name: regex}).sort(sortBy).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, campgrounds) {
             Campground.countDocuments({name: regex}).exec(function(err, count) {
                 if(err) {
                     console.log(err);
@@ -21,19 +24,22 @@ router.get('/', function(req, res) {
                     if(campgrounds.length < 1) {
                         noMatch = 'No campgrounds match that query, please try again';
                     }
+                    // res.json(campgrounds);
                     res.render('campgrounds/index', {
                         campgrounds: campgrounds,
                         current: pageNumber,
                         pages: Math.ceil(count / perPage),
                         noMatch: noMatch,
                         page: 'campgrounds',
-                        search: req.query.search
+                        search: req.query.search,
+                        sortField: sortField,
+                        sortOrder: sortOrder,
                     }); 
                 }
             });
         });
     } else {
-        Campground.find({}).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, campgrounds) {
+        Campground.find({}).sort(sortBy).skip((perPage * pageNumber) - perPage).limit(perPage).exec(function(err, campgrounds) {
             Campground.countDocuments({}).exec(function(err, count) {
                 if(err) {
                     console.log(err);
@@ -44,7 +50,9 @@ router.get('/', function(req, res) {
                         pages: Math.ceil(count / perPage),
                         noMatch: noMatch,
                         page: 'campgrounds',
-                        search: false
+                        search: false,
+                        sortField: sortField,
+                        sortOrder: sortOrder,
                     }); 
                 }
             });

@@ -12,9 +12,9 @@
                             <em>No reviews yet.</em>
                         </h5>
                     <% } else { %>
-                        <p>
+                        <h5>
                             Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
-                        </p>
+                        </h5>
                         <p>
                             <span class="fas fa-star checked"></span>
                             <span class="fas fa-star <% if(campground.rating > 1.5) { %> checked <% } %>"></span>

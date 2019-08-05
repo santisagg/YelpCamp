@@ -10,11 +10,41 @@
     </div>
 </header>
 
-<hr>
+<div class="row">
+    <div class="col-3">
+        <h1 class="h3 mb-3 font-weight-normal">Campgrounds:</h1>
+    </div>
+    <div class="col-9 d-flex align-items-center justify-content-end">
+        <form action="/campgrounds" class="form-inline" method="GET">
+            <% if(search) { %>
+                <input type="text" name="search" value="<%= search %>" class="d-none"> 
+             <%} %>
+            <div class="form-group mr-2">
+                <label class="mr-2" for="sortField">Sort by: </label>
+                <select name="sortField" class="form-control p-1" id="sortField">
+                    <option>Choose...</option>
+                    <option value="rating">Rating</option>
+                    <option value="price">Price</option>
+                    <option value="createdAt">Date</option>
+                </select>
+            </div>
+            <div class="form-group mr-2">
+                <label class="mr-2" for="sortOrder">Order: </label>
+                <select name="sortOrder" class="form-control p-1" id="sortOrder">
+                    <option>Choose...</option>
+                    <option value="1">Asc ↑</option>
+                    <option value="-1">Desc ↓</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Sort" class="btn btn-outline-dark py-1 px-3">
+            </div>
+        </form>
+    </div>
+</div>
+<hr class="mt-0 pb-3">
 
-<h1 class="h3 mb-3 font-weight-normal">Campgrounds:</h1>
-
-<div class="row text-center">
+<div class="row text-center" id="index-grid">
     <div class="col-md-12">
         <% if(noMatch !== null) { %>
             <h3><%= noMatch %></h3>
@@ -46,51 +76,5 @@
     <% }); %>
 </div>
 
-<nav aria-label="Page navigation">
-    <% if(pages && pages > 0) { %>
-        <ul class="pagination justify-content-center">
-            <% if(current == 1) { %>
-                <li class="page-item disabled"><a class="page-link">First</a></li>
-            <% } else { %>
-                <li><a class="page-link" href="/campgrounds<% if(search) { %>?search=<%= search %><% } %>">First</a></li>
-            <% } %>
-
-            <% if(current == 1) { %>
-                <li class="page-item disabled"><a class="page-link">«</a></li>
-            <% } else { %>
-                <li><a class="page-link" href="/campgrounds?page=<%= Number(current - 1) %><% if(search){ %>&search=<%=search%><% } %>">«</a></li>
-            <% } %>
-
-            <% let i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-            <% if(i !== 1) { %>
-                <li class="page-item disabled"><a class="page-link">...</a></li>
-            <% } %>
-            <% for(; i <= (Number(current) + 4) && i <= pages; i++) { %>
-                <% if(i == current) { %>
-                    <li class="active"><a class="page-link"><%= i %></a></li>
-                <% } else { %>
-                    <li><a class="page-link" href="/campgrounds?page=<%= i%><% if(search) { %>&search=<%= search %><% } %>"><%= i %></a></li>
-                <% } %>
-
-                <% if(i == Number(current) + 4 && i < pages) { %>
-                    <li class="page-item disabled"><a class="page-link">...</a></li>
-                <% } %>
-            <% } %>
-
-
-            <% if(current == pages) { %>
-                <li class="page-item disabled"><a class="page-link">»</a></li>
-            <% } else { %>
-                <li><a class="page-link" href="/campgrounds?page=<%= Number(current + 1) %><%if(search){%>&search=<%=search%><%}%>">»</a></li>
-            <% } %>
-            
-            <% if(current == pages) { %>
-                <li class="page-item disabled"><a class="page-link">Last</a></li>
-            <% } else { %>
-                <li><a class="page-link" href="/campgrounds?page=<%= pages %><% if(search) { %>&search=<%= search %><% } %>">Last</a></li>
-            <% } %>
-        </ul>
-    <% } %>
-</div>
-
+<% include ../partials/pagination %>
 <% include ../partials/footer %>
