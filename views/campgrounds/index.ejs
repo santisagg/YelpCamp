@@ -3,7 +3,7 @@
 <header class="jumbotron">
     <div class="container">
         <h1>Welcome to YelpCamp!</h1>
-        <p>View a collection hand-picked campgrounds from all over the world.</p>
+        <p>View a collection of hand-picked campgrounds from all over the world.</p>
         <p>
             <a class="btn btn-dark btn-lg" href="/campgrounds/new">Add a new Campground</a>
         </p>
@@ -11,10 +11,11 @@
 </header>
 
 <div class="row">
-    <div class="col-3">
+    <div class="col-sm-3">
         <h1 class="h3 mb-3 font-weight-normal">Campgrounds:</h1>
     </div>
-    <div class="col-9 d-flex align-items-center justify-content-end">
+    <!-- Sorting form  -->
+    <div id="justifyStart" class="col-sm-9 d-flex align-items-center justify-content-end">
         <form action="/campgrounds" class="form-inline" method="GET">
             <% if(search) { %>
                 <input type="text" name="search" value="<%= search %>" class="d-none"> 

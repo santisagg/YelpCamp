@@ -124,10 +124,14 @@
 <!-- Comment section -->
         <div class="card mt-4">
             <div class="card-header">
-                <div class="float-right">
-                    <a href="/campgrounds/<%= campground.slug %>/comments/new" class="btn btn-secondary">Add New Comment</a>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>Comments:</h4>
+                    </div>
+                    <div id="justifyStart" class="col-sm-6 d-flex justify-content-end">
+                        <a href="/campgrounds/<%= campground.slug %>/comments/new" class="btn btn-secondary">Add a Comment</a>
+                    </div>
                 </div>
-                <h4>Comments:</h4>
             </div>
             <ul class="list-group list-group-flush">
                 <% if(campground.comments.length === 0) { %>

@@ -1,7 +1,10 @@
+html, body {
+    min-height: 100%;
+}
+
 body {
     background-color: #000;
     background-image: url(../images/landing3.jpg);
-    height: 100%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
     background-size: cover;
