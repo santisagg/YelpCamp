@@ -144,12 +144,12 @@
                 <% campground.comments.forEach(function(comment) { %>
                         <li class="list-group-item">
                             <div class="row">
-                                <div class="col-9">
+                                <div class="col-6 col-md-9">
                                     <a href="/users/<%= comment.author.id %>">
                                         <strong><%= comment.author.username %></strong>
                                     </a>
                                 </div>
-                                <div class="col-3 text-right">
+                                <div class="col-6 col-md-3 text-right">
                                     <p>
                                         <em><%= moment(comment.createdAt).fromNow() %></em>
                                     </p>
