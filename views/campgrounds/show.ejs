@@ -156,10 +156,10 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-6">
+                                <div class="col-md-6">
                                     <p class="mb-0"><em><%= comment.text %></em></p>
                                 </div>
-                                <div class="col-6 text-right">
+                                <div class="col-md-6 text-right">
                                     <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin) { %>
                                         <a href="/campgrounds/<%= campground.slug %>/comments/<%= comment._id %>/edit" class="btn btn-sm btn-outline-warning">Edit</a>
                                         <form class="deleteForm" action="/campgrounds/<%= campground.slug %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
