@@ -38,7 +38,7 @@ router.post('/register', function(req, res) {
             return res.render('register', {error: err.message + '.'});
         }
         passport.authenticate('local')(req, res, function() {
-            req.flash('success', 'Signed Up Successfully! Nice to meet you ' + user.username + '!');
+            req.flash('success', 'Signed up successfully! Nice to meet you ' + user.username + '!');
             res.redirect('/campgrounds');
         });
     });

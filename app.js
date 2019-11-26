@@ -35,7 +35,7 @@ app.locals.moment = require('moment');
 
 // PASSPORT CONFIGURATION
 app.use(require('express-session')({
-    secret: 'Cannabis is the most astonishing plant in the world!',
+    secret: PASSPORT_SECRET,
     resave: false,
     saveUninitialized: false
 }));
