@@ -19,12 +19,14 @@ require('dotenv').config();
 
 // Database Connection
 const databaseUrl = process.env.DATABASE_URL || "mongodb://localhost/yelp_camp_v5";
+
 mongoose.connect(databaseUrl, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true
 });
 
+// Package Config
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(__dirname + '/public'));

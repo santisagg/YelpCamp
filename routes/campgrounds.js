@@ -119,7 +119,7 @@ router.put('/:slug/', middleware.checkCampgroundOwnership, function( req, res) {
     delete req.body.campground.rating;
     Campground.findOne({slug: req.params.slug}, function(err, campground) {
         if(err) {
-            res.redirect('/campgrounds/edit');
+            res.redirect('back');
         } else {
             campground.name = req.body.campground.name;
             campground.image = req.body.campground.image;
@@ -142,7 +142,7 @@ router.put('/:slug/', middleware.checkCampgroundOwnership, function( req, res) {
 });
 
 // Destroy Campground Route
-router.delete('/:id', middleware.checkCampgroundOwnership, function(req, res) {
+router.delete('/:slug', middleware.checkCampgroundOwnership, function(req, res) {
     Campground.findOne({slug: req.params.slug}, function(err, campground) {
        if(err) {
             res.redirect('/campgrounds');
