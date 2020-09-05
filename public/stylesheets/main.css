@@ -57,6 +57,10 @@ div.row.text-center {
     color: orange;
 }
 
+#card-image {
+    height: 50%;
+}
+
 /* Admin Input/Button */
 .adminRegister {
     display: none;
